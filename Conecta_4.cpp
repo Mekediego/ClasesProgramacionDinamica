@@ -129,10 +129,14 @@ public:
                 mostrarTablero();
                 cout << "\n¡Jugador " << (jugadorActual == 'X' ? "1 (X)" : "2 (O)") << " gana!\n";
                 jugando = false;
+
+                // Verifica si hay empate
             } else if (tableroLleno()) {
                 mostrarTablero();
                 cout << "\n¡Empate! El tablero está lleno.\n";
                 jugando = false;
+
+                // Si no termina el juego, cambia de turno
             } else {
                 cambiarTurno();
             }
@@ -140,13 +144,16 @@ public:
     }
 };
 
+// Función principal del programa
 int main() {
     system("chcp 65001"); // Activa UTF-8 en consola de Windows
     std::locale::global(std::locale("")); // Activa UTF-8 en C++4
     char opcion;
     do {
-        Conecta4 juego;
-        juego.jugar();
+        Conecta4 juego; // Se crea una nueva partida
+        juego.jugar();// Se ejecuta el juego
+
+        // Pregunta si se desea jugar otra vez4
         cout << "\n¿Desean jugar otra partida? (s/n): ";
         cin >> opcion;
     } while (opcion == 's' || opcion == 'S');
