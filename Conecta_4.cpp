@@ -26,7 +26,7 @@ public:
     }
     // Muestra el tablero en consola
     void mostrarTablero() {
-        cout << "\n 1 2 3 4 5 6 7\n";
+        cout << "\n 1 2 3 4 5 6 7\n"; // Encabezado de columnas
         for (int i = 0; i < FILAS; ++i) {
             for (int j = 0; j < COLUMNAS; ++j) {
                 cout << " " << tablero[i][j];
@@ -35,12 +35,16 @@ public:
         }
     }
 
+    // Verifica si una columna está llena (no se puede jugar ahí)
     bool columnaLlena(int col) {
         return tablero[0][col] != '.';
     }
 
+    // Coloca la ficha del jugador en la columna indicada
     bool colocarFicha(int col) {
+        // Validación de rango y si la columna está llena
         if (col < 0 || col >= COLUMNAS || columnaLlena(col)) return false;
+        // Recorre desde abajo hacia arriba para colocar la ficha
         for (int fila = FILAS - 1; fila >= 0; --fila) {
             if (tablero[fila][col] == '.') {
                 tablero[fila][col] = jugadorActual;
@@ -50,8 +54,9 @@ public:
         return false;
     }
 
+    // Verifica si el jugador actual ha ganado
     bool verificarGanador() {
-        // Horizontal
+        // Verificación horizontal
         for (int i = 0; i < FILAS; ++i)
             for (int j = 0; j <= COLUMNAS - 4; ++j)
                 if (tablero[i][j] == jugadorActual &&
@@ -60,7 +65,7 @@ public:
                     tablero[i][j+3] == jugadorActual)
                     return true;
 
-        // Vertical
+        // Verificación vertical
         for (int i = 0; i <= FILAS - 4; ++i)
             for (int j = 0; j < COLUMNAS; ++j)
                 if (tablero[i][j] == jugadorActual &&
@@ -69,7 +74,7 @@ public:
                     tablero[i+3][j] == jugadorActual)
                     return true;
 
-        // Diagonal ↘
+        // Verificación diagonal descendente
         for (int i = 0; i <= FILAS - 4; ++i)
             for (int j = 0; j <= COLUMNAS - 4; ++j)
                 if (tablero[i][j] == jugadorActual &&
@@ -78,7 +83,7 @@ public:
                     tablero[i+3][j+3] == jugadorActual)
                     return true;
 
-        // Diagonal ↗
+        // Verificación diagonal ascendente
         for (int i = 3; i < FILAS; ++i)
             for (int j = 0; j <= COLUMNAS - 4; ++j)
                 if (tablero[i][j] == jugadorActual &&
@@ -90,16 +95,19 @@ public:
         return false;
     }
 
+    // Verifica si el tablero está completamente lleno (empate)
     bool tableroLleno() {
         for (int j = 0; j < COLUMNAS; ++j)
             if (!columnaLlena(j)) return false;
         return true;
     }
 
+    // Cambia el turno al otro jugador
     void cambiarTurno() {
         jugadorActual = (jugadorActual == 'X') ? 'O' : 'X';
     }
 
+    // Lógica principal del juego
     void jugar() {
         int columna;
         bool jugando = true;
@@ -108,13 +116,15 @@ public:
             mostrarTablero();
             cout << "\nTurno del jugador " << (jugadorActual == 'X' ? "1 (X)" : "2 (O)") << ". Elige columna (1-7): ";
             cin >> columna;
-            columna -= 1;
+            columna -= 1;// Ajuste para índice 0
 
+            // Si el movimiento es inválido, se pide otra entrada
             if (!colocarFicha(columna)) {
                 cout << "Movimiento inválido. Intenta otra columna.\n";
                 continue;
             }
 
+            // Verifica si hay ganador
             if (verificarGanador()) {
                 mostrarTablero();
                 cout << "\n¡Jugador " << (jugadorActual == 'X' ? "1 (X)" : "2 (O)") << " gana!\n";
