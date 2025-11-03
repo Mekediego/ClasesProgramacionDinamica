@@ -1,9 +1,9 @@
 //
 // Created by Chacón González José Diego on 03/11/2025.
 //
-#include <iostream>
-#include <vector>
-#include <locale>
+#include <iostream> // Para entrada/salida en consola
+#include <vector> // Para usar vectores dinámicos
+#include <locale> // Para usar caracteres UTF-8 (aceptar acentos y ñ)
 using namespace std;
 
 const int FILAS = 6;
