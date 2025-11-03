@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <vector>
+#include <locale>
 using namespace std;
 
 const int FILAS = 6;
@@ -125,6 +126,8 @@ public:
 };
 
 int main() {
+    system("chcp 65001"); // Activa UTF-8 en consola de Windows
+    std::locale::global(std::locale("")); // Activa UTF-8 en C++4
     char opcion;
     do {
         Conecta4 juego;
