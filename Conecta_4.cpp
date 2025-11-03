@@ -6,20 +6,25 @@
 #include <locale> // Para usar caracteres UTF-8 (aceptar acentos y ñ)
 using namespace std;
 
+// Constantes para el tamaño del tablero
+
 const int FILAS = 6;
 const int COLUMNAS = 7;
 
+// Clase que encapsula toda la lógica del juego
+
 class Conecta4 {
 private:
-    vector<vector<char>> tablero;
-    char jugadorActual;
+    vector<vector<char>> tablero; // Matriz del tablero
+    char jugadorActual; // 'X' para jugador 1, 'O' para jugador 2
 
 public:
+    // Constructor: inicializa el tablero vacío y asigna el primer turno
     Conecta4() {
         tablero = vector<vector<char>>(FILAS, vector<char>(COLUMNAS, '.'));
-        jugadorActual = 'X'; // Jugador 1 inicia
+        jugadorActual = 'X'; // Jugador 1 comienza
     }
-
+    // Muestra el tablero en consola
     void mostrarTablero() {
         cout << "\n 1 2 3 4 5 6 7\n";
         for (int i = 0; i < FILAS; ++i) {
