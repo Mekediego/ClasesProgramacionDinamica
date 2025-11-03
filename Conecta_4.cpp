@@ -124,3 +124,15 @@ public:
     }
 };
 
+int main() {
+    char opcion;
+    do {
+        Conecta4 juego;
+        juego.jugar();
+        cout << "\n¿Desean jugar otra partida? (s/n): ";
+        cin >> opcion;
+    } while (opcion == 's' || opcion == 'S');
+
+    cout << "Gracias por jugar Conecta 4.\n";
+    return 0;
+}
