@@ -84,4 +84,43 @@ public:
         return false;
     }
 
-    
+    bool tableroLleno() {
+        for (int j = 0; j < COLUMNAS; ++j)
+            if (!columnaLlena(j)) return false;
+        return true;
+    }
+
+    void cambiarTurno() {
+        jugadorActual = (jugadorActual == 'X') ? 'O' : 'X';
+    }
+
+    void jugar() {
+        int columna;
+        bool jugando = true;
+
+        while (jugando) {
+            mostrarTablero();
+            cout << "\nTurno del jugador " << (jugadorActual == 'X' ? "1 (X)" : "2 (O)") << ". Elige columna (1-7): ";
+            cin >> columna;
+            columna -= 1;
+
+            if (!colocarFicha(columna)) {
+                cout << "Movimiento inválido. Intenta otra columna.\n";
+                continue;
+            }
+
+            if (verificarGanador()) {
+                mostrarTablero();
+                cout << "\n¡Jugador " << (jugadorActual == 'X' ? "1 (X)" : "2 (O)") << " gana!\n";
+                jugando = false;
+            } else if (tableroLleno()) {
+                mostrarTablero();
+                cout << "\n¡Empate! El tablero está lleno.\n";
+                jugando = false;
+            } else {
+                cambiarTurno();
+            }
+        }
+    }
+};
+
