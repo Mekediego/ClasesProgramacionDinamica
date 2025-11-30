@@ -1,11 +1,12 @@
 //
-// Created by meked on 30/11/2025.
+// Created by Diego Chacón on 30/11/2025.
 //
 #include <iostream>
 #include <vector>
 #include <string>
 #include <algorithm> // Para sort
 #include <iomanip>   // Para formato de salida
+#include <locale> // Para usar caracteres UTF-8 (aceptar acentos y ñ)
 
 using namespace std;
 
@@ -89,6 +90,8 @@ void ordenarPorCantidad(vector<Producto>& inventario) {
 // Programa principal
 // -----------------------------
 int main() {
+    system("chcp 65001"); // Activa UTF-8 en consola de Windows
+    std::locale::global(std::locale("")); // Activa UTF-8 en C++4
     vector<Producto> inventario;
     int opcion;
 
