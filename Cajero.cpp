@@ -1,5 +1,5 @@
 //
-// Created by meked on 30/11/2025.
+// Created by Diego Chacón on 30/11/2025.
 //
 #include <iostream>
 #include <string>
