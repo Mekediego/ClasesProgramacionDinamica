@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <limits>    // Para limpiar el buffer de entrada
 #include <iomanip>   // Formato de salida (decimales)
+#include <locale> // Para usar caracteres UTF-8 (aceptar acentos y ñ)
 
 /*
   Sistema de Cajero Automático
@@ -232,7 +233,7 @@ public:
     ATM() {
         // Cuentas de ejemplo para probar rápido
         accounts.emplace("1001", Account("1001", "Ana Perez", 1500.00));
-        accounts.emplace("1002", Account("1002", "Diego Lopez", 800.00));
+        accounts.emplace("1002", Account("1002", "Diego Chacon", 800.00));
         accounts.emplace("1003", Account("1003", "Maria Ruiz", 0.00));
     }
 
@@ -270,6 +271,8 @@ public:
 // Función principal
 // ------------------------
 int main() {
+    system("chcp 65001"); // Activa UTF-8 en consola de Windows
+    std::locale::global(std::locale("")); // Activa UTF-8 en C++4
     ATM app;
     app.run();
     return 0;
