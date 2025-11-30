@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <cmath>     // Para pow y sqrt
+#include <locale> // Para usar caracteres UTF-8 (aceptar acentos y ñ)
 using namespace std;
 
 // Función para calcular factorial de un número entero
@@ -16,6 +17,8 @@ long long factorial(int n) {
 }
 
 int main() {
+    system("chcp 65001"); // Activa UTF-8 en consola de Windows
+    std::locale::global(std::locale("")); // Activa UTF-8 en C++4
     int opcion;
     do {
         cout << "\n===== Calculadora =====\n";
